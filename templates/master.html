@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	{% block head %}
+	<title>{% block title %}{% endblock %} - WEBPAGE</title>
+	
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+	<!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Quicksand"> -->
+	
+	<!-- Bootstrap from MaxCDN -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	{% endblock %}
+</head>
+
+<body>
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">NAME</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Page 1</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+		
+	
+	<div id="content">{% block content %}{% endblock %}</div>
+	<div id="footer">
+		{% block footer %}
+		&copy; Copyright 2015 by Ariel Levy, Bi Ling Wu, Alice Xue, and Jeffrey Zou
+		{% endblock %}
+	</div>
+</body>
+
+</html>
