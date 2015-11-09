@@ -17,6 +17,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<!-- Custom styles -->
+	<link href="../static/sticky-footer-navbar.css" rel="stylesheet">
 	{% endblock %}
 </head>
 
@@ -28,21 +30,34 @@
 				<a class="navbar-brand" href="#">NAME</a>
 			</div>
 			<div>
+				<!-- List of tabs (href, id, caption) -->
+				{% set navigation_bar = [
+				    ('/', 'index', 'Home'),
+				    ('/about', 'about', 'About')
+				] -%}
+				{% set active_page = active_page|default('index') -%}
+				...
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Page 1</a></li>
+				{% for href, id, caption in navigation_bar %}
+				    <li{% if id == active_page %} class="active"{% endif %}>
+				    	<a href="{{ href|e }}">{{ caption|e }}</a>
+				    </li>
+				{% endfor %}
 				</ul>
+				...
 			</div>
 		</div>
 	</nav>
 		
+	<!-- Page content -->
+	<div class="container">{% block content %}{% endblock %}</div>
 	
-	<div id="content">{% block content %}{% endblock %}</div>
-	<div id="footer">
-		{% block footer %}
-		&copy; Copyright 2015 by Ariel Levy, Bi Ling Wu, Alice Xue, and Jeffrey Zou
-		{% endblock %}
-	</div>
+	<!-- Footer -->
+	<footer class="footer-inverse">
+		<div class="container">
+			<p class="text-muted">New York Times API</p>
+		</div>
+	</footer>
 </body>
 
 </html>
