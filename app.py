@@ -10,6 +10,10 @@ def index():
 def about():
 	return render_template("about.html")
 
+@app.route("/search")
+def search():
+	return render_template("search.html")
+
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
