@@ -10,6 +10,39 @@
 {% block content %}
 <h1>Search</h1>
 
-<h3>Add Ingredients:</h3>
+<div class="col-sm-4">
+	<h3>Add Ingredients:</h3>
+
+	<div class="input-group">
+		<span class="input-group-addon" id="ing1">1</span>
+		<input type="text" class="form-control" placeholder="Ingredient 1" aria-describedby="ing1" name="ing1">
+	</div>
+	
+	<div class="input-group">
+		<span class="input-group-addon" id="ing2">2</span>
+		<input type="text" class="form-control" placeholder="Ingredient 2" aria-describedby="ing2" name="ing2">
+	</div>
+	
+	<div class="input-group">
+		<span class="input-group-addon" id="ing3">3</span>
+		<input type="text" class="form-control" placeholder="Ingredient 3" aria-describedby="ing3" name="ing3">
+	</div>
+	
+	<div class="input-group">
+		<span class="input-group-addon" id="ing4">4</span>
+		<input type="text" class="form-control" placeholder="Ingredient 1" aria-describedby="ing4" name="ing4">
+	</div>
+
+	<div class="input-group">
+		<span class="input-group-addon" id="ing5">5</span>
+		<input type="text" class="form-control" placeholder="Ingredient 5" aria-describedby="ing5" name="ing5">
+	</div>
+
+	<input type="submit" class="btn btn-primary btn-block" value="Search">
+</div>
+
+<div class="col-sm-8">
+	RESULTS
+</div>
 
 {% endblock %}
