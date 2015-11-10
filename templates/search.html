@@ -11,38 +11,41 @@
 <h1>Search</h1>
 
 <div class="col-sm-4">
-	<h3>Add Ingredients:</h3>
+	<!-- stack of text input forms to enter ingredients -->
+	<h3>Enter Ingredients:</h3>
 
 	<div class="input-group">
 		<span class="input-group-addon" id="ing1">1</span>
 		<input type="text" class="form-control" placeholder="Ingredient 1" aria-describedby="ing1" name="ing1">
 	</div>
-	
+	<br>	
 	<div class="input-group">
 		<span class="input-group-addon" id="ing2">2</span>
 		<input type="text" class="form-control" placeholder="Ingredient 2" aria-describedby="ing2" name="ing2">
 	</div>
-	
+	<br>	
 	<div class="input-group">
 		<span class="input-group-addon" id="ing3">3</span>
 		<input type="text" class="form-control" placeholder="Ingredient 3" aria-describedby="ing3" name="ing3">
 	</div>
-	
+	<br>	
 	<div class="input-group">
 		<span class="input-group-addon" id="ing4">4</span>
 		<input type="text" class="form-control" placeholder="Ingredient 1" aria-describedby="ing4" name="ing4">
 	</div>
-
+	<br>
 	<div class="input-group">
 		<span class="input-group-addon" id="ing5">5</span>
 		<input type="text" class="form-control" placeholder="Ingredient 5" aria-describedby="ing5" name="ing5">
 	</div>
-
+	<br>
 	<input type="submit" class="btn btn-primary btn-block" value="Search">
 </div>
 
 <div class="col-sm-8">
-	RESULTS
+	<!-- list of results from search, blank on first search -->
+	<a href="#"><h4>Result 0</h4></a>
+	<a href="#"><h4>Result 1</h4></a>
 </div>
 
 {% endblock %}
