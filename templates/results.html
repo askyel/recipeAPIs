@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+{% set active_page = "search" %}
+
+{% block title %}TITLE{% endblock %}
+
+{% block head %}
+        {{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1>Results</h1>
+
+<h3>This is what we found on: {{search-list-thingy}}</h3>
+
+{% endblock %}
