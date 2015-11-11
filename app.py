@@ -14,6 +14,10 @@ def about():
 def search():
 	return render_template("search.html")
 
+@app.route("/result")
+def result():
+	return render_template("result.html")
+
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
