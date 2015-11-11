@@ -1,0 +1,30 @@
+{% extends "master.html" %}
+{% set active_page = "search" %}
+
+{% block title %}TITLE{% endblock %}
+
+{% block head %}
+        {{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1>Result 0</h1>
+
+<!-- first column: recipe -->
+<div class="col-sm-4">
+	<h3>Recipe</h3> 
+	<p>recipe results</p>
+</div>
+
+<!-- second column: articles and maps -->
+<div class="col-sm-8">
+	<div class="col-sm-4">
+		<h3>Article Title</h3>
+		<p>article text</p>
+	</div>
+	<div class="col-sm-4">
+		<img src="#">
+	</div>
+</div>
+
+{% endblock %}
