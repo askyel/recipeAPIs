@@ -31,7 +31,7 @@
 	<br>	
 	<div class="input-group">
 		<span class="input-group-addon" id="ing4">4</span>
-		<input type="text" class="form-control" placeholder="Ingredient 1" aria-describedby="ing4" name="ing4">
+		<input type="text" class="form-control" placeholder="Ingredient 4" aria-describedby="ing4" name="ing4">
 	</div>
 	<br>
 	<div class="input-group">
@@ -44,8 +44,9 @@
 
 <div class="col-sm-8">
 	<!-- list of results from search, blank on first search -->
-	<a href="#"><h4>Result 0</h4></a>
-	<a href="#"><h4>Result 1</h4></a>
+	{% for r in results %}
+	<a href="#"><h4>Result</h4></a>
+	{% endfor %}
 </div>
 
 {% endblock %}
