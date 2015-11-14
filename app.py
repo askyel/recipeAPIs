@@ -20,7 +20,8 @@ def search():
 		ing3 = request.form["ing3"]
 		ing4 = request.form["ing4"]
 		ing5 = request.form["ing5"]
-		results = []  # list of recipes matching ingredients
+		query = [ing1,ing2,ing3,ing4,ing5]
+		results = utils.fetchRecipes(query)  # list of recipes matching ingredients
 		return render_template("search.html", results=results)
 
 @app.route("/result")
