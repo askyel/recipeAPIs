@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+{% set active_page = "search" %}
+
+{% block title %}TITLE{% endblock %}
+
+{% block head %}
+        {{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1>{{recipe_info['name']}}</h1>
+
+<!-- first column: recipe -->
+<div class="col-sm-4">
+	<h3>Recipe</h3> 
+	<p>{{recipe_info['ingredients']}}</p>
+</div>
+
+<!-- second column: articles and maps -->
+{% for a in articles %}
+<div class="col-sm-8">
+	<div class="col-sm-4">
+		<h3>Article Title</h3>
+		<p>article text</p>
+	</div>
+	<div class="col-sm-4">
+		<img src="#">
+	</div>
+	<div class="col-sm-4" id="map">
+	  <script src="/static/js/maps.js">
+	  </script>
+	</div>
+</div>
+{% endfor %}
+
+{% endblock %}
