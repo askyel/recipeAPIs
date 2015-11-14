@@ -1,6 +1,15 @@
 import urllib2, json
 
 def fetchGoogleData(address):
+    """
+    Fetches data from the Google Maps Geocoding API.
+    
+    Arguments:
+    address -- <insert description>
+
+    Returns:
+    <insert description>
+    """
     url = "http://maps.googleapis.com/maps/geocode/json?address=" % address
     request = urllib.urlopen(url)
     jsonThing = url.read()
@@ -13,6 +22,15 @@ def fetchGoogleData(address):
     return l
 
 def fetchRecipes(ingredients):
+    """
+    Fetches recipes from the Edamam API.
+
+    Arguments:
+    ingredients -- list of ingredients to search recipes for
+
+    Returns:
+    list of 10 or fewer recipe dictionaries from Edamam API
+    """
     # ingredients is a list of the five ingredients requested
     query = ''
     for i in ingredients:
@@ -31,3 +49,18 @@ def fetchRecipes(ingredients):
 #print r['hits'][0]['recipe']['url']
 #print r['hits'][0]['recipe']['image']
 
+def recipeIngredients(recipe_info):
+	"""
+	Extracts a list of food names from a dictionary of recipe information.
+
+	Arguments:
+	recipe-info -- dictionary of recipe information from Edamam API
+
+	Returns:
+	list of food names in the recipe
+	"""
+	foods = []
+	ings = recipe_info['ingredients']
+	for i in ings:
+		foods += [i['food']]
+	return foods
