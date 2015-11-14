@@ -1,6 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
+import utils
+import ast
 
 app = Flask(__name__)
+
+global recipes
+recipes = {}
 
 @app.route("/")
 def index():
@@ -12,6 +17,7 @@ def about():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+	global recipes
 	if request.method=="GET":
 		return render_template("search.html", results=[])
 	else:
@@ -22,17 +28,22 @@ def search():
 		ing5 = request.form["ing5"]
 		query = [ing1,ing2,ing3,ing4,ing5]
 		results = utils.fetchRecipes(query)  # list of recipes matching ingredients
+		for r in results:
+			name = r['recipe']['label']  
+			if name not in recipes:
+				recipes[name] = r['recipe']
 		return render_template("search.html", results=results)
 
 @app.route("/result")
 @app.route("/result/<recipe>")
-def result():
-	recipe_info = {}  # dictionary of recipe information from __ API
-			  # includes name, ingredients, photo
+def result(recipe=""):
+	global recipes
+	recipe_info = recipes[recipe]  # dictionary of recipe information from Edamam API
 	articles = []  # list of food safety articles relevant to ingredients
         map_info = {}
 	return render_template("result.html", recipe_info=recipe_info, articles=articles,map_info=map_info)
 
 if __name__ == "__main__":
     app.debug = True
+    app.secret_key="0112358"
     app.run(host='0.0.0.0',port=8000)

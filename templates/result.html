@@ -8,29 +8,31 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{recipe_info['name']}}</h1>
+<h1>{{recipe_info['label']}}</h1>
 
 <!-- first column: recipe -->
 <div class="col-sm-4">
 	<h3>Recipe</h3> 
-	<p>{{recipe_info['ingredients']}}</p>
+	<img src={{recipe_info['image']}} class="img-responsive">
+	{% for i in recipe_info['ingredientLines'] %}
+	<p>{{i}}</p>
+	{% endfor %}
 </div>
 
-<!-- second column: articles and maps -->
-{% for a in articles %}
-<div class="col-sm-8">
-	<div class="col-sm-4">
-		<h3>Article Title</h3>
-		<p>article text</p>
-	</div>
-	<div class="col-sm-4">
-		<img src="#">
-	</div>
-	<div class="col-sm-4" id="map">
-	  <script src="/static/js/maps.js">
-	  </script>
-	</div>
+<!-- second column: articles -->
+<div class="col-sm-4">
+	<h3>Articles</h3>
+	{% for a in articles %}
+	<h3>Article Title</h3>
+	<p>article text</p>
+	{% endfor %}
 </div>
-{% endfor %}
+
+<!-- third column: map -->
+<div class="col-sm-4" id="map">
+	<h3>Map</h3>
+	<script src="/static/js/maps.js">
+	</script>
+</div>
 
 {% endblock %}

@@ -14,38 +14,41 @@
 	<!-- stack of text input forms to enter ingredients -->
 	<h3>Enter Ingredients:</h3>
 
-	<div class="input-group">
-		<span class="input-group-addon" id="ing1">1</span>
-		<input type="text" class="form-control" placeholder="Ingredient 1" aria-describedby="ing1" name="ing1">
-	</div>
-	<br>	
-	<div class="input-group">
-		<span class="input-group-addon" id="ing2">2</span>
-		<input type="text" class="form-control" placeholder="Ingredient 2" aria-describedby="ing2" name="ing2">
-	</div>
-	<br>	
-	<div class="input-group">
-		<span class="input-group-addon" id="ing3">3</span>
-		<input type="text" class="form-control" placeholder="Ingredient 3" aria-describedby="ing3" name="ing3">
-	</div>
-	<br>	
-	<div class="input-group">
-		<span class="input-group-addon" id="ing4">4</span>
-		<input type="text" class="form-control" placeholder="Ingredient 4" aria-describedby="ing4" name="ing4">
-	</div>
-	<br>
-	<div class="input-group">
-		<span class="input-group-addon" id="ing5">5</span>
-		<input type="text" class="form-control" placeholder="Ingredient 5" aria-describedby="ing5" name="ing5">
-	</div>
-	<br>
-	<input type="submit" class="btn btn-primary btn-block" value="Search">
+	<form method="POST">
+
+		<div class="input-group">
+			<span class="input-group-addon" id="ing1">1</span>
+			<input type="text" class="form-control" placeholder="Ingredient 1" aria-describedby="ing1" name="ing1">
+		</div>
+		<br>	
+		<div class="input-group">
+			<span class="input-group-addon" id="ing2">2</span>
+			<input type="text" class="form-control" placeholder="Ingredient 2" aria-describedby="ing2" name="ing2">
+		</div>
+		<br>	
+		<div class="input-group">
+			<span class="input-group-addon" id="ing3">3</span>
+			<input type="text" class="form-control" placeholder="Ingredient 3" aria-describedby="ing3" name="ing3">
+		</div>
+		<br>	
+		<div class="input-group">
+			<span class="input-group-addon" id="ing4">4</span>
+			<input type="text" class="form-control" placeholder="Ingredient 4" aria-describedby="ing4" name="ing4">
+		</div>
+		<br>
+		<div class="input-group">
+			<span class="input-group-addon" id="ing5">5</span>
+			<input type="text" class="form-control" placeholder="Ingredient 5" aria-describedby="ing5" name="ing5">
+		</div>
+		<br>
+		<input type="submit" class="btn btn-primary btn-block" value="Search">
+	</form>
 </div>
 
 <div class="col-sm-8">
 	<!-- list of results from search, blank on first search -->
 	{% for r in results %}
-	<a href="#"><h4>Result</h4></a>
+	<a href="/result/{{r['recipe']['label']}}"><h4>{{r['recipe']['label']}}</h4></a>
 	{% endfor %}
 </div>
 
