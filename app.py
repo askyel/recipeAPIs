@@ -29,7 +29,8 @@ def result():
 	recipe_info = {}  # dictionary of recipe information from __ API
 			  # includes name, ingredients, photo
 	articles = []  # list of food safety articles relevant to ingredients
-	return render_template("result.html", recipe_info=recipe_info, articles=articles)
+        map_info = {}
+	return render_template("result.html", recipe_info=recipe_info, articles=articles,map_info=map_info)
 
 if __name__ == "__main__":
     app.debug = True

@@ -1,11 +1,13 @@
 import urllib2, json
 
 def fetchGoogleData(address):
-    url = "http://maps.googleapis.com/maps/geocode/json?adress="+address+"&key="+key
+    url = "http://maps.googleapis.com/maps/geocode/json?address=" % address
     request = urllib.urlopen(url)
     jsonThing = url.read()
     result = json.loads(jsonThing)
+    l = {}
     if result["status"] == "OK":
-        latitude = result["results"][0]["geometry"]["location"]["lat"]
-        longitude = result["results"][0]["geometry"]["location"]["lng"]
-        place_id = result["results"][0]["geometry"]["place_id"]
+        l["lat"] = result["results"][0]["geometry"]["location"]["lat"]
+        l["lng"] = result["results"][0]["geometry"]["location"]["lng"]
+        #place_id = result["results"][0]["geometry"]["place_id"]
+    return l
