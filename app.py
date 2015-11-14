@@ -30,8 +30,8 @@ def result():
 	recipe_info = {}  # dictionary of recipe information from __ API
 			  # includes name, ingredients, photo
 	articles = []  # list of food safety articles relevant to ingredients
-        map_info = {}
-	return render_template("result.html", recipe_info=recipe_info, articles=articles,map_info=map_info)
+        latlng=utils.fetchLatLng(address) # We need to get the address from the article
+	return render_template("result.html", recipe_info=recipe_info, articles=articles,fetchLatLng=fetchLatLng)
 
 if __name__ == "__main__":
     app.debug = True
