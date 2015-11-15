@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-from flask import Flask, render_template
-import urllib2, json
-=======
+import urllib2, json, nyt
 from flask import Flask, render_template, request, redirect, url_for
->>>>>>> b6ec614b80fd6fe95ae2ac61fc6fc0c0b5b4a1a5
 
 app = Flask(__name__)
 
@@ -38,6 +34,9 @@ def result():
         map_info = {}
 	return render_template("result.html", recipe_info=recipe_info, articles=articles,map_info=map_info)
 
+@app.route("/nyt/<tag>")
+def nyt():
+        return nyt.nytArticleSearch(tag)
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
