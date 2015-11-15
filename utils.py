@@ -13,13 +13,24 @@ def fetchGoogleData(address):
     url = "http://maps.googleapis.com/maps/geocode/json?address=" % address
     request = urllib.urlopen(url)
     jsonThing = url.read()
+
+def fetchLatLng(address):
+    #replace whitespaces in address with a +
+    address = address.replace(" ", "+")
+    print address
+    url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=AIzaSyDK9pqvEWsu7SWG9b6eZp6KuXKZwM_qQR4" % address
+    print url
+    request = urllib2.urlopen(url)
+    jsonThing = request.read()
     result = json.loads(jsonThing)
     l = {}
     if result["status"] == "OK":
         l["lat"] = result["results"][0]["geometry"]["location"]["lat"]
         l["lng"] = result["results"][0]["geometry"]["location"]["lng"]
         #place_id = result["results"][0]["geometry"]["place_id"]
+    print l
     return l
+
 
 def fetchRecipes(ingredients):
     """
@@ -64,3 +75,5 @@ def recipeIngredients(recipe_info):
 	for i in ings:
 		foods += [i['food']]
 	return foods
+
+fetchLatLng("345 Chambers Street")

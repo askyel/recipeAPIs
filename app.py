@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, request, redirect, url_for, session
 import utils
 import ast
+=======
+import urllib2, json, nyt
+from flask import Flask, render_template, request, redirect, url_for
+>>>>>>> master
 
 app = Flask(__name__)
 
@@ -40,9 +45,12 @@ def result(recipe=""):
 	global recipes
 	recipe_info = recipes[recipe]  # dictionary of recipe information from Edamam API
 	articles = []  # list of food safety articles relevant to ingredients
-        map_info = {}
-	return render_template("result.html", recipe_info=recipe_info, articles=articles,map_info=map_info)
+        latlng=utils.fetchLatLng(address) # We need to get the address from the article
+	return render_template("result.html", recipe_info=recipe_info, articles=articles,fetchLatLng=fetchLatLng)
 
+@app.route("/nyt/<tag>")
+def nyt():
+        return nyt.nytArticleSearch(tag)
 if __name__ == "__main__":
     app.debug = True
     app.secret_key="0112358"
