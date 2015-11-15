@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, request, redirect, url_for, session
 import utils
-import ast
-=======
 import urllib2, json, nyt
-from flask import Flask, render_template, request, redirect, url_for
->>>>>>> master
 
 app = Flask(__name__)
 
@@ -51,6 +46,7 @@ def result(recipe=""):
 @app.route("/nyt/<tag>")
 def nyt():
         return nyt.nytArticleSearch(tag)
+        
 if __name__ == "__main__":
     app.debug = True
     app.secret_key="0112358"
