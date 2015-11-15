@@ -1,3 +1,4 @@
+import urllib2, json, nyt
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
@@ -33,6 +34,9 @@ def result():
         latlng=utils.fetchLatLng(address) # We need to get the address from the article
 	return render_template("result.html", recipe_info=recipe_info, articles=articles,fetchLatLng=fetchLatLng)
 
+@app.route("/nyt/<tag>")
+def nyt():
+        return nyt.nytArticleSearch(tag)
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0',port=8000)
