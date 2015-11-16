@@ -8,13 +8,13 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{recipe_info['label']}}</h1>
+<h1>{{recipeInfo['label']}}</h1>
 
 <!-- first column: recipe -->
 <div class="col-sm-4">
 	<h3>Recipe</h3> 
-	<img src={{recipe_info['image']}} class="img-responsive">
-	{% for i in recipe_info['ingredientLines'] %}
+	<img src={{recipeInfo['image']}} class="img-responsive">
+	{% for i in recipeInfo['ingredientLines'] %}
 	<p>{{i}}</p>
 	{% endfor %}
 </div>
@@ -23,8 +23,12 @@
 <div class="col-sm-4">
 	<h3>Articles</h3>
 	{% for a in articles %}
-	<h3>Article Title</h3>
-	<p>article text</p>
+	<h4><a href={{a['url']}}>{{a['headline']}}</a></h4>
+	<p>
+		{% for l in a['locations'] %}
+		{{l}} // 
+		{% endfor %}
+	</p>
 	{% endfor %}
 </div>
 

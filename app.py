@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import utils, nyt
+import utils
+import nyt
 import urllib2, json
 
 app = Flask(__name__)
@@ -38,10 +39,15 @@ def search():
 @app.route("/result/<recipe>")
 def result(recipe=""):
 	global recipes
-	recipe_info = recipes[recipe]  # dictionary of recipe information from Edamam API
-	articles = []  # list of food safety articles relevant to ingredients
-        #latlng=utils.fetchLatLng(address) # We need to get the address from the article
-	return render_template("result.html", recipe_info=recipe_info, articles=articles)#,fetchLatLng=fetchLatLng)
+	recipeInfo = recipes[recipe]  # dictionary of recipe information from Edamam API
+    	ingList = utils.recipeIngredients(recipeInfo)  # list of ingredients in recipe
+    	articles = []  # list of food safety articles relevant to ingredients
+    	for ing in ingList:
+            ingArticles = utils.nytArticleSearch(utils.safeSearch(ing))
+            for article in ingArticles:
+                articles += [utils.extractInfo(article)]  
+    	#latlng=utils.fetchLatLng(address) # We need to get the address from the article
+	return render_template("result.html", recipeInfo=recipeInfo, articles=articles)#,fetchLatLng=fetchLatLng)
 
 @app.route("/nyt/<tag>")
 def nyt():
