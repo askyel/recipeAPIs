@@ -83,7 +83,7 @@ def fetchRecipes(ingredients):
         query = query+i
         query = query+'%20'
     query = query[0:-3]
-    url = 'https://api.edamam.com/search?q=' + query+ '&app_id=821b9133&app_key=5fd301b3c02db28eba7b9cdfed7ee453'
+    url = 'https://api.edamam.com/search?q=' + query + '&app_id=821b9133&app_key=5fd301b3c02db28eba7b9cdfed7ee453'
     request = urllib2.urlopen(url)
     results = request.read()
     try: 
@@ -94,9 +94,6 @@ def fetchRecipes(ingredients):
     if len(recipes) > 10:
         recipes = recipes[0:10]
     return recipes
-#print r['hits'][0]['recipe']['ingredients']
-#print r['hits'][0]['recipe']['url']
-#print r['hits'][0]['recipe']['image']
 
 def recipeIngredients(recipeInfo):
 	"""
