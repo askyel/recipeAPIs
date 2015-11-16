@@ -29,6 +29,10 @@ Team Members
 
 Used APIs
 ---------
+<p><a href="https://slack-redir.net/link?url=https%3A%2F%2Fdeveloper.edamam.com%2Frecipe-api">Edamam's Recipe Search API</a> *allows 1,000 free calls</p>
+<p><a href="https://developers.google.com/maps/documentation/geocoding/intro?csw=1">The Google Maps Geocoding API</a></p>
+<p><a href="https://developers.google.com/maps/documentation/static-maps/intro">Google Static Maps API</a></p>
+<p><a href="http://developer.nytimes.com/docs/read/article_search_api_v2">New York Times Article Search API</a></p>
 
 Instructions
 ------------
