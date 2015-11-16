@@ -1,4 +1,6 @@
 (function initialize() {
+    if (latlng==="") 
+	return;
     //Settings for the map
     var mapSetting = {
 	center: latlng,
