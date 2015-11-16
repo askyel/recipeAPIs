@@ -1,27 +1,24 @@
 import urllib2, json
 
-def fetchGoogleData(address):
+######### Google Maps API #############
+
+def fetchLatLng(address):
     """
     Fetches data from the Google Maps Geocoding API.
     
     Arguments:
-    address -- <insert description>
-
+    address -- string name of a location
+    
     Returns:
-    <insert description>
-    """
-    url = "http://maps.googleapis.com/maps/geocode/json?address=" % address
-    request = urllib.urlopen(url)
-    jsonThing = url.read()
-
-def fetchLatLng(address):
-    """
+    dictionary of floats for latitude and longitude of address
+        'lat' -- latitude of address
+        'lng' -- longitude of address
     """
     #replace whitespaces in address with a +
     address = address.replace(" ", "+")
-    print address
+    #print address
     url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=AIzaSyDK9pqvEWsu7SWG9b6eZp6KuXKZwM_qQR4" % address
-    print url
+    #print url
     request = urllib2.urlopen(url)
     jsonThing = request.read()
     result = json.loads(jsonThing)
@@ -30,15 +27,45 @@ def fetchLatLng(address):
         l["lat"] = result["results"][0]["geometry"]["location"]["lat"]
         l["lng"] = result["results"][0]["geometry"]["location"]["lng"]
         #place_id = result["results"][0]["geometry"]["place_id"]
-    print l
+    #print l
     return l
 
 def createMarker(address):
     """
+    Creates marker string based on address formatted for Google Maps API url.
+    
+    Arguments:
+    address -- string name of a location
+    
+    Returns:
+    if latitude and longitude can be found,
+        string to create marker in Google map, labeled by first letter of address
+    otherwise,
+        empty string
     """
     latLng = fetchLatLng(address)
-    markerString = "&markers=color:red%7Clabel:"+address[0].upper()+"%7C"+str(latLng['lat'])+","+str(latLng['lng'])
+    if 'lat' in latLng and 'lng' in latLng:
+        return "&markers=color:red%7Clabel:"+address[0].upper()+"%7C"+str(latLng['lat'])+","+str(latLng['lng'])
+    else:
+        return ""
+
+def markers(articleList):
+    """
+    Compiles marker strings for listed articles.
+    
+    Arguments:
+    articleList -- list of dictionaries of article information
+    
+    Returns:
+    string of markers formatted for Google Maps API url
+    """
+    markerString = ""
+    for article in articleList:
+        for l in article['locations']:
+            markerString += createMarker(l)
     return markerString
+
+########### Edamam Recipe API #############
 
 def fetchRecipes(ingredients):
     """
@@ -59,7 +86,10 @@ def fetchRecipes(ingredients):
     url = 'https://api.edamam.com/search?q=' + query+ '&app_id=821b9133&app_key=5fd301b3c02db28eba7b9cdfed7ee453'
     request = urllib2.urlopen(url)
     results = request.read()
-    r = json.loads(results)
+    try: 
+        r = json.loads(results)
+    except ValueError:
+        return []
     recipes = r['hits']
     if len(recipes) > 10:
         recipes = recipes[0:10]
@@ -84,6 +114,8 @@ def recipeIngredients(recipeInfo):
 		foods += [i['food']]
 	return foods
     
+########## NY Times Article Search API ##########
+
 def safeSearch(ing):
     """
     Makes string safe as query term for NY Times API
@@ -122,7 +154,10 @@ def extractInfo(article):
     article -- dictionary of information returned by NY Times API
     
     Returns:
-    dictionary of article headline, url, and list of relevant locations
+    dictionary of article information
+        headline -- article title
+        url - article web url
+        locations -- list of relevant locations to article
     """
     headline = article['headline']['main']
     url = article['web_url']
@@ -133,4 +168,22 @@ def extractInfo(article):
             locations += [k['value']]
     return {'headline':headline, 'url':url, 'locations':locations}
 
-#fetchLatLng("345 Chambers Street")
+def articleList(ingList):
+    	"""
+    	Creates a list of articles relevant to a list of ingredients.
+    
+    	Arguments:
+    	ingList -- list of ingredients
+    
+   	    Returns:
+    	list of dictionaries with article information for each ingredient
+    	"""
+    	articles = []
+	for ing in ingList:
+            ingArticles = nytArticleSearch(safeSearch(ing))
+            if len(ingArticles) > 5:  # limit to 5 articles per ingredient
+                ingArticles = ingArticles[0:5]
+        	for article in ingArticles:
+            		info = extractInfo(article)
+            		articles += [info] 
+    	return articles 

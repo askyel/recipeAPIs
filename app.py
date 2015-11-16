@@ -40,18 +40,19 @@ def search():
 def result(recipe=""):
 	global recipes
 	recipeInfo = recipes[recipe]  # dictionary of recipe information from Edamam API
-    	ingList = utils.recipeIngredients(recipeInfo)  # list of ingredients in recipe
-    	articles = []  # list of food safety articles relevant to ingredients
-        markerString = ""  # string of location markers for map
+	ingList = utils.recipeIngredients(recipeInfo)  # list of ingredients in recipe
+	articles = utils.articleList(ingList)  # list of food safety articles relevant to ingredients
+    	markers = utils.markers(articles)  # string of location markers for map
+    	"""
     	for ing in ingList:
-            ingArticles = utils.nytArticleSearch(utils.safeSearch(ing))
-            for article in ingArticles:
-                info = utils.extractInfo(article)
-                articles += [info]  
-                for l in info['locations']:
-                    markerString += utils.createMarker(l)
-    	#latlng=utils.fetchLatLng(address) # We need to get the address from the article
-	return render_template("result.html", recipeInfo=recipeInfo, articles=articles, markerString=markerString)#,fetchLatLng=fetchLatLng)
+        ingArticles = utils.nytArticleSearch(utils.safeSearch(ing))
+        for article in ingArticles:
+            info = utils.extractInfo(article)
+            articles += [info]  
+            for l in info['locations']:
+                markerString += utils.createMarker(l)
+    	"""
+	return render_template("result.html", recipeInfo=recipeInfo, articles=articles, markers=markers)#,fetchLatLng=fetchLatLng)
 
 @app.route("/nyt/<tag>")
 def nyt():
