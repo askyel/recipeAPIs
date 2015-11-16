@@ -40,6 +40,9 @@ def result(recipe=""):
 	global recipes
 	recipe_info = recipes[recipe]  # dictionary of recipe information from Edamam API
 	articles = []  # list of food safety articles relevant to ingredients
+        #if address = "":
+        #latlng=""
+        #else:
         #latlng=utils.fetchLatLng(address) # We need to get the address from the article
 	return render_template("result.html", recipe_info=recipe_info, articles=articles)#,fetchLatLng=fetchLatLng)
 
