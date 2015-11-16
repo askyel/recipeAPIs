@@ -26,3 +26,16 @@ Team Members
 		<td><a href="https://github.com/JeffreyZou13">JeffreyZou13</a></td>
 	</tr>
 </table>
+
+Used APIs
+---------
+
+Instructions
+------------
+
+No need to register for an account, just click on the "Search" on top of the screen.There you can can put up to 5 ingredients. Click "Enter." To the left of the ingredients search will be a list of dishes that can be made from the given ingredients.
+
+Once you click on one of the dishes, you will be redirected to page with the recipe listed out and a list of links to food safety articles pertaining to the given ingredients. To the right of the two lists is a map displying the locations of the listed articles. 
+
+You can re-search by clicking the "Search" at the top of the screen.
+
