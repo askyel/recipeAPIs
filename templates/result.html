@@ -35,8 +35,15 @@
 <!-- third column: map -->
 <div class="col-sm-4" id="map">
 	<h3>Map</h3>
-	<script src="/static/js/maps.js">
-	</script>
+	
+	<img src="https://maps.googleapis.com/maps/api/staticmap?size=600x600&scale=2&maptype=terrain
+	&center=Stuyvesant+High+School,New+York,NY
+	&markers=color:green%7Clabel:S%7CStuyvesant+High+School,New+York,NY
+	{{markerString}}" 
+	style="width:100%">
+	
+	<!-- <script src="/static/js/maps.js">
+	</script> -->
 </div>
 
 {% endblock %}

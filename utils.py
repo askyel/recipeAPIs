@@ -15,6 +15,8 @@ def fetchGoogleData(address):
     jsonThing = url.read()
 
 def fetchLatLng(address):
+    """
+    """
     #replace whitespaces in address with a +
     address = address.replace(" ", "+")
     print address
@@ -31,6 +33,12 @@ def fetchLatLng(address):
     print l
     return l
 
+def createMarker(address):
+    """
+    """
+    latLng = fetchLatLng(address)
+    markerString = "&markers=color:red%7Clabel:"+address[0].upper()+"%7C"+str(latLng['lat'])+","+str(latLng['lng'])
+    return markerString
 
 def fetchRecipes(ingredients):
     """
@@ -77,6 +85,15 @@ def recipeIngredients(recipeInfo):
 	return foods
     
 def safeSearch(ing):
+    """
+    Makes string safe as query term for NY Times API
+    
+    Arguments:
+    ing -- query term
+    
+    Returns
+    string with '+' instead of ' '
+    """
     return "+".join(ing.split(" "))
 
 def nytArticleSearch(tag):
